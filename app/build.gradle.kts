@@ -34,7 +34,8 @@ android {
             buildConfig = true
         }
         debug {
-            buildConfigField("String", "GEMINI_API_KEY", project.getLocalProperty("gemini_api_key"))
+            buildConfigField("String", "GEMINI_API_KEY", "\"${project.getLocalProperty("gemini_api_key")}\"")
+            buildConfigField("String", "GROQ_API_KEY", "\"${project.getLocalProperty("groq_api_key")}\"")
         }
         release {
             isMinifyEnabled = false
@@ -168,13 +169,25 @@ dependencies {
     implementation(libs.firebase.crashlytics)
 
     // gson
+
+    // gson
     implementation(libs.gson)
+
+    // moshi
+
+    // gemini gen ai - removed, using Groq instead
 
     // moshi
     implementation(libs.moshi)
 
     // gemini gen ai
     implementation(libs.gemini.generative.ai)
+
+    // retrofit for REST API
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
 
     // lottie animations
     implementation(libs.lottie.compose)

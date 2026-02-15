@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.dhruvv.recipegenerator.common.parser.JsonParser
 import com.dhruvv.recipegenerator.common.parser.MoshiParser
 import com.dhruvv.recipegenerator.data.api.RecipeGenerator
-import com.dhruvv.recipegenerator.data.api.gemini.GeminiRecipeGenerator
+import com.dhruvv.recipegenerator.data.api.gemini.GroqRecipeGenerator
 import com.dhruvv.recipegenerator.data.db.converters.RecipeConverter
 import com.dhruvv.recipegenerator.data.db.room.RecipeGeneratorDB
 import com.dhruvv.recipegenerator.data.repo.RecipeRepoImpl
@@ -84,12 +84,11 @@ object AppModule {
 
     /**
      * Provides a singleton instance of RecipeGenerator for generating recipes.
-     *
-     * @param moshi The Moshi instance used for JSON parsing.
+     * Uses Groq API for recipe generation.
      */
     @Singleton
     @Provides
-    fun provideRecipeGeneratorModel(moshi: Moshi): RecipeGenerator = GeminiRecipeGenerator(moshi)
+    fun provideRecipeGeneratorModel(): RecipeGenerator = GroqRecipeGenerator()
 
     /**
      * Provides a singleton instance of UseCase for business logic operations.

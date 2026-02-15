@@ -1,5 +1,6 @@
 package com.dhruvv.recipegenerator.data.repo
 
+import android.util.Log
 import com.dhruvv.recipegenerator.common.util.Resource
 import com.dhruvv.recipegenerator.data.api.RecipeGenerator
 import com.dhruvv.recipegenerator.data.api.model.toRecipeEntity
@@ -32,7 +33,9 @@ class RecipeRepoImpl(
         return flow {
             emit(Resource.Loading())
             try {
+                Log.i(TAG, "generateRecipe called with prompt: $prompt")
                 val response = recipeGenerator.generateRecipe(prompt)
+                Log.i(TAG, "generateRecipe response: $response")
                 response?.let { apiRecipe ->
                     val recipeEntity = apiRecipe.toRecipeEntity()
                     val recipeId = recipeDao.insertRecipe(recipeEntity)
@@ -42,9 +45,11 @@ class RecipeRepoImpl(
                 }
 
                 if (response == null) {
+                    Log.e(TAG, "generateRecipe response is null")
                     emit(Resource.Error("Oops! Unable to generate the recipe.😞 Try again!"))
                 }
             } catch (e: Exception) {
+                Log.e(TAG, "generateRecipe exception: ${e.message}", e)
                 emit(Resource.Error(e.message))
             }
         }
@@ -152,5 +157,9 @@ class RecipeRepoImpl(
                 emit(Resource.Error(e.message))
             }
         }
+    }
+
+    companion object {
+        private const val TAG = "RecipeRepoImpl"
     }
 }

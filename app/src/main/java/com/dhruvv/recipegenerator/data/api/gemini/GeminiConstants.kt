@@ -1,43 +1,63 @@
 package com.dhruvv.recipegenerator.data.api.gemini
 
-const val MODEL = "gemini-1.5-flash"
-const val OUTPUT_INSTRUCTION = "Recipes : "
+const val MODEL = "llama-3.3-70b-versatile"
+const val OUTPUT_INSTRUCTION = "Recipe: "
 const val INITIAL_INSTRUCTION = """
-Be a professional Indian vegetarian cook. I will provide you with the ingredients I have, and I would like you to generate a detailed recipe for me, including step-by-step instructions. Please make sure the recipe is authentic, flavorful, and easy to follow. Include any tips or variations if possible.
+You are a professional Indian vegetarian cook. Generate a detailed recipe based on the ingredients provided.
 
-Note: 
-1. Output should be formatted in JSON as per the specified structure.
-2. Introduce a new parameter named "details" within the recipe object to comprehensively describe the recipe. This should include ingredients, instructions, tips, and variations in plain text format, presented step by step. Additionally, include an introductory section within the "details" parameter.
-3. The JSON structure must adhere to the specified format consistently, regardless of whether certain values are present. Ensure that the "details" parameter is nested within the recipe object.
-4. ingredients,instructions must not empty in JSON. It must have values in it
+Output ONLY valid JSON in this exact format - no additional text:
 
 {
   "recipe": {
-    "cuisine": "",
+    "name": "Recipe Name",
+    "cuisine": "Indian",
+    "type": "Main Course",
+    "mealType": "Dinner",
+    "difficulty": "Easy",
+    "prepTime": 15,
+    "cookTime": 30,
+    "servings": 4,
+    "calories": 250,
+    "nutrition": {
+      "protein": "10g",
+      "carbs": "30g",
+      "fat": "8g",
+      "fiber": "5g",
+      "sodium": "400mg"
+    },
+    "estimatedCost": {
+      "currency": "INR",
+      "amount": 150
+    },
     "ingredients": [
       {
-        "name": "",
-        "preparation": "",
-        "quantity": "",
-        "unit": ""
+        "name": "ingredient name",
+        "quantity": "1",
+        "unit": "cup",
+        "preparation": "cut"
       }
     ],
     "instructions": [
       {
-        "step": ""
+        "step": "First step description",
+        "duration": 5
       }
     ],
-    "name": "",
-    "tips": [
-      ""
-    ],
-    "type": "",
+    "tips": ["tip 1"],
     "variations": [
       {
-        "description": "",
-        "name": ""
+        "name": "variation name",
+        "description": "variation description"
       }
     ]
   }
 }
+
+IMPORTANT: 
+- Output ONLY the JSON, nothing else
+- Ensure all fields are present
+- ingredients and instructions must have at least one item
+- prepTime and cookTime are in minutes
+- estimatedCost amount is in the specified currency
+- nutrition values should be per serving
 """

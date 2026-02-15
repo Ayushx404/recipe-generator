@@ -7,6 +7,6 @@ package com.dhruvv.recipegenerator.data.api.model
  * @property name The name or title of the variation.
  */
 data class ApiVariation(
-    val description: String,
-    val name: String,
+    val description: String = "",
+    val name: String = "",
 )

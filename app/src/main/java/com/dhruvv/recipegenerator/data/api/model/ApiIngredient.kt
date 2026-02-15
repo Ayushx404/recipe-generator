@@ -15,8 +15,8 @@ import com.squareup.moshi.Json
 data class ApiIngredient(
     @Json(ignore = true)
     val image_url: String = "",
-    val name: String,
-    val preparation: String,
-    val quantity: String,
-    val unit: String,
+    val name: String = "",
+    val preparation: String = "",
+    val quantity: String = "",
+    val unit: String = "",
 )
