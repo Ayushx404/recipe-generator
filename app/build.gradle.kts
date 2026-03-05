@@ -13,11 +13,11 @@ plugins {
 }
 
 android {
-    namespace = "com.dhruvv.recipegenerator"
+    namespace = "com.ayush.recipegenerator"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.dhruvv.recipegenerator"
+        applicationId = "com.ayush.recipegenerator"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -117,6 +117,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.androidx.ui.text.google.fonts)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -167,6 +168,8 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.play.services.auth)
 
     // gson
 

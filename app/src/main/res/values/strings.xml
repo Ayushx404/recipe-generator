@@ -9,6 +9,12 @@
     <string name="dairy_products">Dairy Products</string>
     <string name="generate_recipe">Generate recipe</string>
     <string name="clear_all">Clear All</string>
+    <string name="add_ingredient">Add Ingredient</string>
+    <string name="ingredient_name">Ingredient Name</string>
+    <string name="select_category">Select Category</string>
+    <string name="standalone">Standalone (Mixed)</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
 
     <!-- home screen strings -->
     <string name="home_header">Not sure what to cook in %s?</string>
